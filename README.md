@@ -1,7 +1,8 @@
-# arduino_projects (really needs to be renamed)
-Exploring arduino as part of BCB 585
+# Automated Phenotype Sensing
 
-**Hardwhere**
+Exploring arduino, Raspberry Pi and sensors as part of BCB 585
+
+**Hardware**
 
 * Raspberry Pi 4
 * Arduino Uno
@@ -19,7 +20,7 @@ The Raspberry Pi is like a separate computer so you'll need to connect it to a m
 
 Since Raspberry Pi only has digital input, you can connect an Arduino Uno to process and record analog input (moisture sensors, IR, etc). 
 
-**Tutorials:**
+## Tutorials:
 
 * https://create.arduino.cc/projecthub/electropeak/complete-guide-to-use-soil-moisture-sensor-w-examples-756b1f
 * https://electropeak.com/learn/project_make_your_plant_smart/
