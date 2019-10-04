@@ -1,5 +1,6 @@
-/* soil_moisture_sensor.ino
- * Desc: Record moisture level every 10 seconds
+/*  
+ * File:soil_moisture_sensor.ino
+ * Desc: Record moisture level regularly
  * Auth: (get tutorial link) modified by Jennifer Chang
  * Date: 2019/10/04 
  */
@@ -14,16 +15,28 @@ void setup() {
 }
 
 void loop() {
- String sensorValue = "Analog Value:";
- sensorValue = sensorValue + analogRead(sensorPin);
- Serial.println(sensorValue);   // "Analog Value: 0" == no conductance (too dry); "300 or above"==lots of conductance (wet)
 
- if (sensorValue < limit) {
-   digitalWrite(13, HIGH);      // Turns on light for dry soil
+ // Calculate average Moisture Value
+ int sense_Moisture=0;
+ for(int i = 0; i < 10; i++){
+   // 0 = no conductance (too dry); ~300 = lots of conductance (wet)
+   sense_Moisture = sense_Moisture + analogRead(sensorPin);
+   delay(1000); 
+ }
+ sense_Moisture = sense_Moisture/10.0;  
+
+ // Send Moisture Value to serialport
+ String sensorValue = "Analog Value:";
+ sensorValue = sensorValue + sense_Moisture;
+ Serial.println(sensorValue);   
+
+ // Turn on or off the light based on dry/wet soil
+ if (sense_Moisture < limit) {
+   digitalWrite(13, HIGH);      // dry soil
  }
  else {
-   digitalWrite(13, LOW);       // Turns off light for wet soil
+   digitalWrite(13, LOW);       // wet soil
  }
 
- delay(10000); // 1000 = 1 second, this is taking readings every 10 secs 
+ delay(60000); // 1000 = 1 second, this is taking readings every 1 minute
 }
