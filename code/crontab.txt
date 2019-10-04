@@ -5,5 +5,5 @@
 
 # Probably want to add a script to clear the output.txt file
 30 23 * * * cp output.txt backup.txt
-30 23 * * * echo "" > output.txt
+45 23 * * * echo "" > output.txt
 
